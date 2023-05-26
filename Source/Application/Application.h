@@ -15,7 +15,7 @@ private:
 	Window m_window;
 
 	Application() {}
-
+	~Application() {}
 public:
 	static Application& Instance()
 	{

@@ -5,6 +5,12 @@ class Window
 public:
 
 	/// <summary>
+	/// ウィンドウハンドルの取得
+	/// </summary>
+	/// <returns>ウィンドウハンドル</returns>
+	HWND GetWndHandle() const { return m_hWnd; }
+
+	/// <summary>
 	/// ウィンドウの作成
 	/// </summary>
 	/// <param name="clientWidth">横幅</param>

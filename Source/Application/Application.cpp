@@ -2,16 +2,31 @@
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);	// メモリリークを知らせる
+
+	CoInitializeEx(nullptr, COINIT_MULTITHREADED);	// COM初期化
+
 	Application::Instance().Excute();
+
+	CoUninitialize();	// COM解放
 
 	return 0;
 }
 
 void Application::Excute()
 {
-	if (!m_window.Create(1280, 720, L"FrameworkDX12", L"Window"))
+	static const int width = 1280;
+	static const int height = 720;
+
+	if (!m_window.Create(width, height, L"FrameworkDX12", L"Window"))
 	{
 		assert(0 && "ウィンドウ作成失敗。");
+		return;
+	}
+	
+	if (!GraphicsDevice::Instance().Init(m_window.GetWndHandle(), width, height))
+	{
+		assert(0 && "グラフィックスデバイス初期化失敗。");
 		return;
 	}
 
@@ -21,5 +36,7 @@ void Application::Excute()
 		{
 			break;
 		}
+
+		GraphicsDevice::Instance().ScreenFlip();
 	}
 }

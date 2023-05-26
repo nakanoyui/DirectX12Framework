@@ -16,6 +16,12 @@
     <Filter Include="Source\System\Window">
       <UniqueIdentifier>{d27489f4-b333-439b-b6bb-32991aebc73e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\System\Utility">
+      <UniqueIdentifier>{46b95565-b191-4068-890f-9dafb47a63c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Graphics\RTVHeap">
+      <UniqueIdentifier>{3276c1a0-2402-4f12-aee9-ebeae2a79138}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application\Application.cpp">
@@ -27,6 +33,15 @@
     <ClCompile Include="Source\Pch.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Source\System\Utility\Utility.cpp">
+      <Filter>Source\System\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\GraphicsDevice.cpp">
+      <Filter>Source\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\RTVHeap\RTVHeap.cpp">
+      <Filter>Source\Graphics\RTVHeap</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Application\Application.h">
@@ -37,6 +52,18 @@
     </ClInclude>
     <ClInclude Include="Source\Pch.h">
       <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\System\System.h">
+      <Filter>Source\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\System\Utility\Utility.h">
+      <Filter>Source\System\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\GraphicsDevice.h">
+      <Filter>Source\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\RTVHeap\RTVHeap.h">
+      <Filter>Source\Graphics\RTVHeap</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
