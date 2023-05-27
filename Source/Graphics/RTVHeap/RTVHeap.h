@@ -20,10 +20,10 @@ public:
 	int CreateRTV(ID3D12Resource* pBuffer);
 
 	/// <summary>
-	/// RTVのCPU側アドレスを返す関数
+	/// RTVのCPU側アドレスを返す
 	/// </summary>
 	/// <param name="number">登録番号</param>
-	/// <returns>SRVのGPU側アドレス</returns>
+	/// <returns>RTVのGPU側アドレス</returns>
 	D3D12_CPU_DESCRIPTOR_HANDLE GetRTVCPUHandle(int number);
 
 private:

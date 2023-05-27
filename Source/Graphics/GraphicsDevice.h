@@ -16,6 +16,11 @@ public:
 	bool Init(HWND hWnd, int w, int h);
 
 	/// <summary>
+	/// 描画準備
+	/// </summary>
+	void Prepare();
+
+	/// <summary>
 	/// 画面(スワップチェイン)の切り替え
 	/// </summary>
 	void ScreenFlip();
@@ -24,6 +29,18 @@ public:
 	/// コマンドキューの同期待ち
 	/// </summary>
 	void WaitForCommandQueue();
+
+	/// <summary>
+	/// デバイスの取得
+	/// </summary>
+	/// <returns>デバイスのポインタ</returns>
+	ID3D12Device8* GetDevice()const { return m_pDevice.Get(); }
+
+	/// <summary>
+	/// コマンドリストの取得
+	/// </summary>
+	/// <returns>コマンドリストのポインタ</returns>
+	ID3D12GraphicsCommandList6* GetCmdList()const { return m_pCmdList.Get(); }
 
 private:
 
@@ -74,7 +91,6 @@ private:
 	/// <param name="after">新しい状態</param>
 	void SetResourceBarrier(ID3D12Resource* pResource, D3D12_RESOURCE_STATES before, D3D12_RESOURCE_STATES after);
 
-	//? 追加
 	/// <summary>
 	/// デバッグレイヤーを適用
 	/// </summary>

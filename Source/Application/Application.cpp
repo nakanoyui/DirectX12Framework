@@ -23,12 +23,24 @@ void Application::Excute()
 		assert(0 && "ウィンドウ作成失敗。");
 		return;
 	}
-	
+
 	if (!GraphicsDevice::Instance().Init(m_window.GetWndHandle(), width, height))
 	{
 		assert(0 && "グラフィックスデバイス初期化失敗。");
 		return;
 	}
+
+	Mesh mesh;
+	mesh.Create(&GraphicsDevice::Instance());
+
+	RenderingSetting renderingSetting = {};
+	renderingSetting.InputLayouts = { InputLayout::POSITION };
+	renderingSetting.Formats = { DXGI_FORMAT_R8G8B8A8_UNORM };
+	renderingSetting.IsDepth = false;
+	renderingSetting.IsDepthMask = false;
+
+	Shader shader;
+	shader.Create(&GraphicsDevice::Instance(), L"SimpleShader", renderingSetting, {});
 
 	while (true)
 	{
@@ -36,6 +48,12 @@ void Application::Excute()
 		{
 			break;
 		}
+
+		GraphicsDevice::Instance().Prepare();
+
+		shader.Begin(width, height);
+
+		shader.DrawMesh(mesh);
 
 		GraphicsDevice::Instance().ScreenFlip();
 	}

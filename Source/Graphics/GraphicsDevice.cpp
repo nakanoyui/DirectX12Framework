@@ -1,7 +1,5 @@
 #include "GraphicsDevice.h"
 
-#include "../Pch.h"
-
 bool GraphicsDevice::Init(HWND hWnd, int w, int h)
 {
 	if (!CreateFactory())
@@ -54,18 +52,24 @@ bool GraphicsDevice::Init(HWND hWnd, int w, int h)
 	return true;
 }
 
-void GraphicsDevice::ScreenFlip()
+void GraphicsDevice::Prepare()
 {
 	auto bbIdx = m_pSwapChain->GetCurrentBackBufferIndex();
-	SetResourceBarrier(m_pSwapchainBuffers[bbIdx].Get(), D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET);
+	SetResourceBarrier(m_pSwapchainBuffers[bbIdx].Get(), 
+		D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET);
 
 	auto rtvH = m_pRTVHeap->GetRTVCPUHandle(bbIdx);
 	m_pCmdList->OMSetRenderTargets(1, &rtvH, false, nullptr);
 
 	float clearColor[] = { 1.0f,0.0f,1.0f,1.0f }; // 紫色
 	m_pCmdList->ClearRenderTargetView(rtvH, clearColor, 0, nullptr);
+}
 
-	SetResourceBarrier(m_pSwapchainBuffers[bbIdx].Get(), D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT);
+void GraphicsDevice::ScreenFlip()
+{
+	auto bbIdx = m_pSwapChain->GetCurrentBackBufferIndex();
+	SetResourceBarrier(m_pSwapchainBuffers[bbIdx].Get(),
+		D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT);
 
 	m_pCmdList->Close();
 	ID3D12CommandList* cmdlists[] = { m_pCmdList.Get() };
@@ -100,9 +104,9 @@ bool GraphicsDevice::CreateFactory()
 {
 	UINT flagsDXGI = 0;
 	flagsDXGI |= DXGI_CREATE_FACTORY_DEBUG;
-	auto result = CreateDXGIFactory2(flagsDXGI, IID_PPV_ARGS(m_pDxgiFactory.GetAddressOf()));
+	auto hr = CreateDXGIFactory2(flagsDXGI, IID_PPV_ARGS(m_pDxgiFactory.GetAddressOf()));
 
-	if (FAILED(result))
+	if (FAILED(hr))
 	{
 		return false;
 	}
@@ -239,9 +243,9 @@ bool GraphicsDevice::CreateSwapchain(HWND hWnd, int width, int height)
 	swapchainDesc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;		// フリップ後は速やかに破棄
 	swapchainDesc.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;	// ウィンドウとフルスクリーン切り替え可能
 
-	auto result = m_pDxgiFactory->CreateSwapChainForHwnd(m_pCmdQueue.Get(), hWnd, &swapchainDesc, nullptr, nullptr, (IDXGISwapChain1**)m_pSwapChain.GetAddressOf());
+	auto hr = m_pDxgiFactory->CreateSwapChainForHwnd(m_pCmdQueue.Get(), hWnd, &swapchainDesc, nullptr, nullptr, (IDXGISwapChain1**)m_pSwapChain.GetAddressOf());
 
-	if (FAILED(result))
+	if (FAILED(hr))
 	{
 		return false;
 	}
@@ -268,9 +272,9 @@ bool GraphicsDevice::CreateSwapchainRTV()
 
 bool GraphicsDevice::CreateFence()
 {
-	auto result = m_pDevice->CreateFence(m_fenceVal, D3D12_FENCE_FLAG_NONE, IID_PPV_ARGS(&m_pFence));
+	auto hr = m_pDevice->CreateFence(m_fenceVal, D3D12_FENCE_FLAG_NONE, IID_PPV_ARGS(&m_pFence));
 
-	if (FAILED(result))
+	if (FAILED(hr))
 	{
 		return false;
 	}
@@ -289,9 +293,9 @@ void GraphicsDevice::SetResourceBarrier(ID3D12Resource* pResource, D3D12_RESOURC
 
 void GraphicsDevice::EnableDebugLayer()
 {
-	ID3D12Debug* debugLayer = nullptr;
+	ID3D12Debug* pDebugLayer = nullptr;
 
-	D3D12GetDebugInterface(IID_PPV_ARGS(&debugLayer));
-	debugLayer->EnableDebugLayer();		// デバッグレイヤーを有効にする
-	debugLayer->Release();
+	D3D12GetDebugInterface(IID_PPV_ARGS(&pDebugLayer));
+	pDebugLayer->EnableDebugLayer();		// デバッグレイヤーを有効にする
+	pDebugLayer->Release();
 }

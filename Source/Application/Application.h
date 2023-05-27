@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../System/Window/Window.h"
+#include "../Pch.h"
 
 class Application
 {

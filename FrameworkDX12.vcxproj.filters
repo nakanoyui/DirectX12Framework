@@ -22,6 +22,24 @@
     <Filter Include="Source\Graphics\RTVHeap">
       <UniqueIdentifier>{3276c1a0-2402-4f12-aee9-ebeae2a79138}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Graphics\Mesh">
+      <UniqueIdentifier>{38d0c105-8f40-4585-85cc-57b1ad5a5dd1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Asset">
+      <UniqueIdentifier>{9b0376c3-4faa-4a5a-b4f7-9ececf5f708e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Asset\Shader">
+      <UniqueIdentifier>{20266062-d4d3-4f46-8091-4684cb8f5fc5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Graphics\Shader">
+      <UniqueIdentifier>{c5ed91d5-8440-40f5-b648-6557d3f33604}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Graphics\Shader\Pipeline">
+      <UniqueIdentifier>{9c08e605-f095-4586-8bb8-d9e958fe54c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Graphics\Shader\RootSignature">
+      <UniqueIdentifier>{510584c3-6234-42e4-881d-3b355913fe91}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application\Application.cpp">
@@ -41,6 +59,18 @@
     </ClCompile>
     <ClCompile Include="Source\Graphics\RTVHeap\RTVHeap.cpp">
       <Filter>Source\Graphics\RTVHeap</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Mesh\Mesh.cpp">
+      <Filter>Source\Graphics\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Shader\Shader.cpp">
+      <Filter>Source\Graphics\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Shader\Pipeline\Pipeline.cpp">
+      <Filter>Source\Graphics\Shader\Pipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Shader\RootSignature\RootSignature.cpp">
+      <Filter>Source\Graphics\Shader\RootSignature</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -65,5 +95,28 @@
     <ClInclude Include="Source\Graphics\RTVHeap\RTVHeap.h">
       <Filter>Source\Graphics\RTVHeap</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Graphics\Mesh\Mesh.h">
+      <Filter>Source\Graphics\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Shader\Shader.h">
+      <Filter>Source\Graphics\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Shader\Pipeline\Pipeline.h">
+      <Filter>Source\Graphics\Shader\Pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Shader\RootSignature\RootSignature.h">
+      <Filter>Source\Graphics\Shader\RootSignature</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Asset\Shader\SimpleShader_VS.hlsl">
+      <Filter>Asset\Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="Asset\Shader\SimpleShader_PS.hlsl">
+      <Filter>Asset\Shader</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>
