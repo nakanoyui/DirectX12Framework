@@ -1,4 +1,15 @@
-float4 main(float4 pos : SV_Position) : SV_TARGET
+#include "inc_SimpleShader.hlsli"
+
+// í«â¡
+Texture2D<float4> g_inputTex : register(t0);
+
+// í«â¡
+SamplerState g_ss : register(s0);
+
+// çXêV
+float4 main(VSOutput In) : SV_TARGET
 {
-    return float4(1.0f, 1.0f, 1.0f, 1.0f);
+    float4 color = g_inputTex.Sample(g_ss, In.uv);
+    
+    return color;
 }

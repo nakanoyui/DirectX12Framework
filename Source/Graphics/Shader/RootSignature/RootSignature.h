@@ -41,19 +41,19 @@ private:
 	/// <summary>
 	/// レンジの作成
 	/// </summary>
-	/// <param name="pRange">レンジのポインタ</param>
+	/// <param name="range">レンジのポインタ</param>
 	/// <param name="type">レンジタイプ</param>
 	/// <param name="count">登録数</param>
-	void CreateRange(D3D12_DESCRIPTOR_RANGE& pRange, RangeType type, int count);
+	void CreateRange(D3D12_DESCRIPTOR_RANGE& range, RangeType type, int count);
 
 	/// <summary>
 	/// サンプラーの作成
 	/// </summary>
-	/// <param name="pSamplerDesc">サンプラーデスクのポインタ</param>
+	/// <param name="samplerDesc">サンプラーデスクのポインタ</param>
 	/// <param name="mode">アドレスモード</param>
 	/// <param name="filter">フィルター</param>
 	/// <param name="count">使用サンプラー数</param>
-	void CreateStaticSampler(D3D12_STATIC_SAMPLER_DESC& pSamplerDesc, TextureAddressMode mode, 
+	void CreateStaticSampler(D3D12_STATIC_SAMPLER_DESC& samplerDesc, TextureAddressMode mode, 
 		D3D12Filter filter, int count);
 
 	GraphicsDevice* m_pDevice = nullptr;

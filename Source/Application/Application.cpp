@@ -34,13 +34,16 @@ void Application::Excute()
 	mesh.Create(&GraphicsDevice::Instance());
 
 	RenderingSetting renderingSetting = {};
-	renderingSetting.InputLayouts = { InputLayout::POSITION };
+	renderingSetting.InputLayouts = { InputLayout::POSITION,InputLayout::TEXCOORD };
 	renderingSetting.Formats = { DXGI_FORMAT_R8G8B8A8_UNORM };
 	renderingSetting.IsDepth = false;
 	renderingSetting.IsDepthMask = false;
 
 	Shader shader;
-	shader.Create(&GraphicsDevice::Instance(), L"SimpleShader", renderingSetting, {});
+	shader.Create(&GraphicsDevice::Instance(), L"SimpleShader", renderingSetting, { RangeType::SRV });
+
+	Texture sampleTex;
+	sampleTex.Load(&GraphicsDevice::Instance(),"Asset/Texture/SampleTex.jpg");
 
 	while (true)
 	{
@@ -51,7 +54,11 @@ void Application::Excute()
 
 		GraphicsDevice::Instance().Prepare();
 
+		GraphicsDevice::Instance().GetCBVSRVUAVHeap()->SetHeap();
+
 		shader.Begin(width, height);
+
+		sampleTex.Set(sampleTex.GetSRVNumber());
 
 		shader.DrawMesh(mesh);
 

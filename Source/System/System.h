@@ -6,12 +6,16 @@
 // 描画関係のデバイス
 #include "../Graphics/GraphicsDevice.h"
 
-// RTVヒープ
-#include "../Graphics/RTVHeap/RTVHeap.h"
+// ヒープ
+#include "../Graphics/Heap/Heap.h"
+#include "../Graphics/Heap/RTVHeap/RTVHeap.h"
+#include "../Graphics/Heap/CBVSRVUAVHeap/CBVSRVUAVHeap.h"
 
-// Mesh
+// テクスチャ
+#include "../Graphics/Texture/Texture.h"
+
+// メッシュ
 #include "../Graphics/Mesh/Mesh.h"
 
-//? 追加
 // Shader
 #include "../Graphics/Shader/Shader.h"

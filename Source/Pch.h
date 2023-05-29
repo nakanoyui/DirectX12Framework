@@ -62,4 +62,9 @@
 #pragma comment(lib, "DirectXTK12.lib")
 #include <SimpleMath.h>
 
+//? ’Ç‰Á
+// DirectX Tex
+#pragma comment(lib,"DirectXTex.lib")
+#include <DirectXTex.h>
+
 #include "System/System.h"

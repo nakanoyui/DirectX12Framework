@@ -91,6 +91,8 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>Pch.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>Pch.h</ForcedIncludeFiles>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -108,6 +110,8 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>Pch.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>Pch.h</ForcedIncludeFiles>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -125,6 +129,8 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>Pch.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>Pch.h</ForcedIncludeFiles>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -142,6 +148,8 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>Pch.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>Pch.h</ForcedIncludeFiles>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -153,11 +161,13 @@
   <ItemGroup>
     <ClCompile Include="Source\Application\Application.cpp" />
     <ClCompile Include="Source\Graphics\GraphicsDevice.cpp" />
+    <ClCompile Include="Source\Graphics\Heap\CBVSRVUAVHeap\CBVSRVUAVHeap.cpp" />
+    <ClCompile Include="Source\Graphics\Heap\RTVHeap\RTVHeap.cpp" />
     <ClCompile Include="Source\Graphics\Mesh\Mesh.cpp" />
-    <ClCompile Include="Source\Graphics\RTVHeap\RTVHeap.cpp" />
     <ClCompile Include="Source\Graphics\Shader\Pipeline\Pipeline.cpp" />
     <ClCompile Include="Source\Graphics\Shader\RootSignature\RootSignature.cpp" />
     <ClCompile Include="Source\Graphics\Shader\Shader.cpp" />
+    <ClCompile Include="Source\Graphics\Texture\Texture.cpp" />
     <ClCompile Include="Source\Pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -170,17 +180,21 @@
   <ItemGroup>
     <ClInclude Include="Source\Application\Application.h" />
     <ClInclude Include="Source\Graphics\GraphicsDevice.h" />
+    <ClInclude Include="Source\Graphics\Heap\CBVSRVUAVHeap\CBVSRVUAVHeap.h" />
+    <ClInclude Include="Source\Graphics\Heap\Heap.h" />
+    <ClInclude Include="Source\Graphics\Heap\RTVHeap\RTVHeap.h" />
     <ClInclude Include="Source\Graphics\Mesh\Mesh.h" />
-    <ClInclude Include="Source\Graphics\RTVHeap\RTVHeap.h" />
     <ClInclude Include="Source\Graphics\Shader\Pipeline\Pipeline.h" />
     <ClInclude Include="Source\Graphics\Shader\RootSignature\RootSignature.h" />
     <ClInclude Include="Source\Graphics\Shader\Shader.h" />
+    <ClInclude Include="Source\Graphics\Texture\Texture.h" />
     <ClInclude Include="Source\Pch.h" />
     <ClInclude Include="Source\System\System.h" />
     <ClInclude Include="Source\System\Utility\Utility.h" />
     <ClInclude Include="Source\System\Window\Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Asset\Shader\inc_SimpleShader.hlsli" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -204,11 +218,13 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="packages\directxtk12_uwp.2023.4.28.1\build\native\directxtk12_uwp.targets" Condition="Exists('packages\directxtk12_uwp.2023.4.28.1\build\native\directxtk12_uwp.targets')" />
+    <Import Project="packages\directxtex_uwp.2023.4.28.1\build\native\directxtex_uwp.targets" Condition="Exists('packages\directxtex_uwp.2023.4.28.1\build\native\directxtex_uwp.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>このプロジェクトは、このコンピューター上にない NuGet パッケージを参照しています。それらのパッケージをダウンロードするには、[NuGet パッケージの復元] を使用します。詳細については、http://go.microsoft.com/fwlink/?LinkID=322105 を参照してください。見つからないファイルは {0} です。</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('packages\directxtk12_uwp.2023.4.28.1\build\native\directxtk12_uwp.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\directxtk12_uwp.2023.4.28.1\build\native\directxtk12_uwp.targets'))" />
+    <Error Condition="!Exists('packages\directxtex_uwp.2023.4.28.1\build\native\directxtex_uwp.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\directxtex_uwp.2023.4.28.1\build\native\directxtex_uwp.targets'))" />
   </Target>
 </Project>
