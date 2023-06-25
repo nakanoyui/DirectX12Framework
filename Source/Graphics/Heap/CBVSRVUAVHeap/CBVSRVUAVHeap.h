@@ -25,5 +25,17 @@ public:
 	/// </summary>
 	void SetHeap();
 
+	/// <summary>
+	/// ヒープの取得関数
+	/// </summary>
+	/// <returns></returns>
+	ID3D12DescriptorHeap* GetHeap() { return m_pHeap.Get(); }
+
+	/// <summary>
+	/// 使用数を取得
+	/// </summary>
+	/// <returns>使用数</returns>
+	const Math::Vector3& GetUseCount() { return m_useCount; }
+
 private:
 };

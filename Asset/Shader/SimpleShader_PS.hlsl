@@ -1,15 +1,15 @@
 #include "inc_SimpleShader.hlsli"
 
-// 追加
-Texture2D<float4> g_inputTex : register(t0);
+Texture2D g_diffuseTex : register(t0);              // Diffuseテクスチャ
+Texture2D g_normalTex : register(t1);               // 法線テクスチャ
+Texture2D g_RoughnessMetallicTex : register(t2);    // RoughnessMetallicマップ
+Texture2D g_emissiveTex : register(t3);             // Emissiveテクスチャ
 
-// 追加
 SamplerState g_ss : register(s0);
 
-// 更新
 float4 main(VSOutput In) : SV_TARGET
 {
-    float4 color = g_inputTex.Sample(g_ss, In.uv);
+    float4 color = g_diffuseTex.Sample(g_ss, In.UV);
     
     return color;
 }

@@ -8,12 +8,12 @@ void Shader::Create(GraphicsDevice* pGraphicsDevice, const std::wstring& filePat
 	LoadShaderFile(filePath);
 
 	m_upRootSignature = std::make_unique<RootSignature>();
-	m_upRootSignature->Create(pGraphicsDevice,rangeTypes);
+	m_upRootSignature->Create(pGraphicsDevice, rangeTypes, m_cbvCount);
 
 	m_upPipeline = std::make_unique<Pipeline>();
-	m_upPipeline->SetRenderSettings(pGraphicsDevice, m_upRootSignature.get(), renderingSetting.InputLayouts, 
+	m_upPipeline->SetRenderSettings(pGraphicsDevice, m_upRootSignature.get(), renderingSetting.InputLayouts,
 		renderingSetting.CullMode, renderingSetting.BlendMode, renderingSetting.PrimitiveTopologyType);
-	m_upPipeline->Create({ m_pVSBlob ,m_pHSBlob ,m_pDSBlob ,m_pGSBlob ,m_pPSBlob }, renderingSetting.Formats, 
+	m_upPipeline->Create({ m_pVSBlob ,m_pHSBlob ,m_pDSBlob ,m_pGSBlob ,m_pPSBlob }, renderingSetting.Formats,
 		renderingSetting.IsDepth, renderingSetting.IsDepthMask, renderingSetting.RTVCount, renderingSetting.IsWireFrame);
 }
 
@@ -24,7 +24,7 @@ void Shader::Begin(int w, int h)
 	// ルートシグネチャのセット
 	m_pDevice->GetCmdList()->SetGraphicsRootSignature(m_upRootSignature->GetRootSignature());
 
-	D3D12_PRIMITIVE_TOPOLOGY_TYPE topologyType = 
+	D3D12_PRIMITIVE_TOPOLOGY_TYPE topologyType =
 		static_cast<D3D12_PRIMITIVE_TOPOLOGY_TYPE>(m_upPipeline->GetTopologyType());
 
 	switch (topologyType)
@@ -58,7 +58,18 @@ void Shader::Begin(int w, int h)
 
 void Shader::DrawMesh(const Mesh& mesh)
 {
-	mesh.DrawInstanced();
+	SetMaterial(mesh.GetMaterial());
+
+	mesh.DrawInstanced(mesh.GetInstanceCount());
+}
+
+void Shader::DrawModel(const ModelData& modelData)
+{
+	// ノードを全て描画
+	for (auto& node : modelData.GetNodes())
+	{
+		DrawMesh(*node.spMesh);
+	}
 }
 
 void Shader::LoadShaderFile(const std::wstring& filePath)
@@ -122,4 +133,12 @@ void Shader::LoadShaderFile(const std::wstring& filePath)
 			return;
 		}
 	}
+}
+
+void Shader::SetMaterial(const Material& material)
+{
+	material.spBaseColorTex->Set(m_cbvCount);
+	//material.spNormalTex->Set(m_cbvCount + 1);
+	//material.spMetallicRoughnessTex->Set(m_cbvCount + 2);
+	//material.spEmissiveTex->Set(m_cbvCount + 3);
 }

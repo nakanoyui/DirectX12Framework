@@ -18,6 +18,66 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\Application\Application.h" />
+    <ClInclude Include="Source\Graphics\CBufferAllocater\CBufferAllocater.h" />
+    <ClInclude Include="Source\Graphics\CBufferAllocater\CBufferData\CBufferData.h" />
+    <ClInclude Include="Source\Graphics\GraphicsDevice.h" />
+    <ClInclude Include="Source\Graphics\Heap\CBVSRVUAVHeap\CBVSRVUAVHeap.h" />
+    <ClInclude Include="Source\Graphics\Heap\Heap.h" />
+    <ClInclude Include="Source\Graphics\Heap\RTVHeap\RTVHeap.h" />
+    <ClInclude Include="Source\Graphics\Mesh\Mesh.h" />
+    <ClInclude Include="Source\Graphics\Mesh\MeshData\MeshData.h" />
+    <ClInclude Include="Source\Graphics\Model\Model.h" />
+    <ClInclude Include="Source\Graphics\Model\ModelLoader.h" />
+    <ClInclude Include="Source\Graphics\Shader\Pipeline\Pipeline.h" />
+    <ClInclude Include="Source\Graphics\Shader\RootSignature\RootSignature.h" />
+    <ClInclude Include="Source\Graphics\Shader\Shader.h" />
+    <ClInclude Include="Source\Graphics\Texture\Texture.h" />
+    <ClInclude Include="Source\Pch.h" />
+    <ClInclude Include="Source\System\System.h" />
+    <ClInclude Include="Source\System\Utility\Utility.h" />
+    <ClInclude Include="Source\System\Window\Window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Application\Application.cpp" />
+    <ClCompile Include="Source\Graphics\CBufferAllocater\CBufferAllocater.cpp" />
+    <ClCompile Include="Source\Graphics\GraphicsDevice.cpp" />
+    <ClCompile Include="Source\Graphics\Heap\CBVSRVUAVHeap\CBVSRVUAVHeap.cpp" />
+    <ClCompile Include="Source\Graphics\Heap\RTVHeap\RTVHeap.cpp" />
+    <ClCompile Include="Source\Graphics\Mesh\Mesh.cpp" />
+    <ClCompile Include="Source\Graphics\Model\Model.cpp" />
+    <ClCompile Include="Source\Graphics\Model\ModelLoader.cpp" />
+    <ClCompile Include="Source\Graphics\Shader\Pipeline\Pipeline.cpp" />
+    <ClCompile Include="Source\Graphics\Shader\RootSignature\RootSignature.cpp" />
+    <ClCompile Include="Source\Graphics\Shader\Shader.cpp" />
+    <ClCompile Include="Source\Graphics\Texture\Texture.cpp" />
+    <ClCompile Include="Source\Pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Source\System\Utility\Utility.cpp" />
+    <ClCompile Include="Source\System\Window\Window.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Asset\Shader\SimpleShader_PS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Asset\Shader\SimpleShader_VS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Asset\Shader\inc_SimpleShader.hlsli" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -91,12 +151,13 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>Pch.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>Pch.h</ForcedIncludeFiles>
-      <AdditionalIncludeDirectories>
-      </AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Source;.\Library\assimp\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>Library\assimp\build\lib\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <DelayLoadDLLs>assimp-vc143-mtd.dll</DelayLoadDLLs>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -110,14 +171,15 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>Pch.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>Pch.h</ForcedIncludeFiles>
-      <AdditionalIncludeDirectories>
-      </AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Source;.\Library\assimp\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>Library\assimp\build\lib\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <DelayLoadDLLs>assimp-vc143-mt.dll</DelayLoadDLLs>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -129,12 +191,13 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>Pch.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>Pch.h</ForcedIncludeFiles>
-      <AdditionalIncludeDirectories>
-      </AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Source;.\Library\assimp\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>Library\assimp\build\lib\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <DelayLoadDLLs>assimp-vc143-mtd.dll</DelayLoadDLLs>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -148,77 +211,22 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>Pch.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>Pch.h</ForcedIncludeFiles>
-      <AdditionalIncludeDirectories>
-      </AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Source;.\Library\assimp\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>Library\assimp\build\lib\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <DelayLoadDLLs>assimp-vc143-mt.dll</DelayLoadDLLs>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="Source\Application\Application.cpp" />
-    <ClCompile Include="Source\Graphics\GraphicsDevice.cpp" />
-    <ClCompile Include="Source\Graphics\Heap\CBVSRVUAVHeap\CBVSRVUAVHeap.cpp" />
-    <ClCompile Include="Source\Graphics\Heap\RTVHeap\RTVHeap.cpp" />
-    <ClCompile Include="Source\Graphics\Mesh\Mesh.cpp" />
-    <ClCompile Include="Source\Graphics\Shader\Pipeline\Pipeline.cpp" />
-    <ClCompile Include="Source\Graphics\Shader\RootSignature\RootSignature.cpp" />
-    <ClCompile Include="Source\Graphics\Shader\Shader.cpp" />
-    <ClCompile Include="Source\Graphics\Texture\Texture.cpp" />
-    <ClCompile Include="Source\Pch.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="Source\System\Utility\Utility.cpp" />
-    <ClCompile Include="Source\System\Window\Window.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Source\Application\Application.h" />
-    <ClInclude Include="Source\Graphics\GraphicsDevice.h" />
-    <ClInclude Include="Source\Graphics\Heap\CBVSRVUAVHeap\CBVSRVUAVHeap.h" />
-    <ClInclude Include="Source\Graphics\Heap\Heap.h" />
-    <ClInclude Include="Source\Graphics\Heap\RTVHeap\RTVHeap.h" />
-    <ClInclude Include="Source\Graphics\Mesh\Mesh.h" />
-    <ClInclude Include="Source\Graphics\Shader\Pipeline\Pipeline.h" />
-    <ClInclude Include="Source\Graphics\Shader\RootSignature\RootSignature.h" />
-    <ClInclude Include="Source\Graphics\Shader\Shader.h" />
-    <ClInclude Include="Source\Graphics\Texture\Texture.h" />
-    <ClInclude Include="Source\Pch.h" />
-    <ClInclude Include="Source\System\System.h" />
-    <ClInclude Include="Source\System\Utility\Utility.h" />
-    <ClInclude Include="Source\System\Window\Window.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Asset\Shader\inc_SimpleShader.hlsli" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="Asset\Shader\SimpleShader_PS.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">4.0_level_9_3</ShaderModel>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">4.0_level_9_3</ShaderModel>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4.0_level_9_3</ShaderModel>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4.0_level_9_3</ShaderModel>
-    </FxCompile>
-    <FxCompile Include="Asset\Shader\SimpleShader_VS.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
-    </FxCompile>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="packages\directxtk12_uwp.2023.4.28.1\build\native\directxtk12_uwp.targets" Condition="Exists('packages\directxtk12_uwp.2023.4.28.1\build\native\directxtk12_uwp.targets')" />
     <Import Project="packages\directxtex_uwp.2023.4.28.1\build\native\directxtex_uwp.targets" Condition="Exists('packages\directxtex_uwp.2023.4.28.1\build\native\directxtex_uwp.targets')" />
+    <Import Project="packages\directxtex_uwp.2023.6.14.1\build\native\directxtex_uwp.targets" Condition="Exists('packages\directxtex_uwp.2023.6.14.1\build\native\directxtex_uwp.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -226,5 +234,6 @@
     </PropertyGroup>
     <Error Condition="!Exists('packages\directxtk12_uwp.2023.4.28.1\build\native\directxtk12_uwp.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\directxtk12_uwp.2023.4.28.1\build\native\directxtk12_uwp.targets'))" />
     <Error Condition="!Exists('packages\directxtex_uwp.2023.4.28.1\build\native\directxtex_uwp.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\directxtex_uwp.2023.4.28.1\build\native\directxtex_uwp.targets'))" />
+    <Error Condition="!Exists('packages\directxtex_uwp.2023.6.14.1\build\native\directxtex_uwp.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\directxtex_uwp.2023.6.14.1\build\native\directxtex_uwp.targets'))" />
   </Target>
 </Project>

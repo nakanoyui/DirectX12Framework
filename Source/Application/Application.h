@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../System/Window/Window.h"
+#include "../Pch.h"
 
 class Application
 {
@@ -12,6 +13,12 @@ public:
 	void Excute();
 
 private:
+
+	/// <summary>
+	/// .dllのディレクトリのセットとロードを行う
+	/// </summary>
+	void SetDirectoryAndLoadDll();
+
 	Window m_window;
 
 	Application() {}

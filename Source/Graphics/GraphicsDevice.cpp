@@ -30,8 +30,8 @@ bool GraphicsDevice::Init(HWND hWnd, int w, int h)
 		return false;
 	}
 
-	m_upRTVHeap = std::make_unique<RTVHeap>();
-	if (!m_upRTVHeap->Create(this, HeapType::RTV,100))
+	m_pRTVHeap = std::make_unique<RTVHeap>();
+	if (!m_pRTVHeap->Create(this, HeapType::RTV, 100))
 	{
 		assert(0 && "RTVƒq[ƒv‚Ìì¬¸”s");
 		return false;
@@ -43,6 +43,9 @@ bool GraphicsDevice::Init(HWND hWnd, int w, int h)
 		assert(0 && "CBVSRVUAVƒq[ƒv‚Ìì¬¸”s");
 		return false;
 	}
+
+	m_upCBufferAllocater = std::make_unique<CBufferAllocater>();
+	m_upCBufferAllocater->Create(this, m_upCBVSRVUAVHeap.get());
 
 	if (!CreateSwapchainRTV())
 	{
@@ -65,7 +68,7 @@ void GraphicsDevice::Prepare()
 	SetResourceBarrier(m_pSwapchainBuffers[bbIdx].Get(), 
 		D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET);
 
-	auto rtvH = m_upRTVHeap->GetCPUHandle(bbIdx);
+	auto rtvH = m_pRTVHeap->GetCPUHandle(bbIdx);
 	m_pCmdList->OMSetRenderTargets(1, &rtvH, false, nullptr);
 
 	float clearColor[] = { 1.0f,0.0f,1.0f,1.0f }; // ‡F
@@ -271,7 +274,7 @@ bool GraphicsDevice::CreateSwapchainRTV()
 			return false;
 		}
 
-		m_upRTVHeap->CreateRTV(m_pSwapchainBuffers[i].Get());
+		m_pRTVHeap->CreateRTV(m_pSwapchainBuffers[i].Get());
 	}
 
 	return true;

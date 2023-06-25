@@ -15,6 +15,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
 void Application::Excute()
 {
+	SetDirectoryAndLoadDll();
+
 	static const int width = 1280;
 	static const int height = 720;
 
@@ -30,20 +32,30 @@ void Application::Excute()
 		return;
 	}
 
-	Mesh mesh;
-	mesh.Create(&GraphicsDevice::Instance());
+	ModelData modelData;
+	modelData.Load("Asset/Model/Cube/Cube.gltf");
+
+	Math::Matrix mWorld;
 
 	RenderingSetting renderingSetting = {};
-	renderingSetting.InputLayouts = { InputLayout::POSITION,InputLayout::TEXCOORD };
+	renderingSetting.InputLayouts = 
+		{ InputLayout::POSITION,InputLayout::TEXCOORD,InputLayout::COLOR,InputLayout::NORMAL,InputLayout::TANGENT };
 	renderingSetting.Formats = { DXGI_FORMAT_R8G8B8A8_UNORM };
 	renderingSetting.IsDepth = false;
 	renderingSetting.IsDepthMask = false;
 
 	Shader shader;
-	shader.Create(&GraphicsDevice::Instance(), L"SimpleShader", renderingSetting, { RangeType::SRV });
+	shader.Create(&GraphicsDevice::Instance(), L"SimpleShader", 
+		renderingSetting, { RangeType::CBV,RangeType::CBV, RangeType::SRV,RangeType::SRV,RangeType::SRV,RangeType::SRV });
 
-	Texture sampleTex;
-	sampleTex.Load(&GraphicsDevice::Instance(),"Asset/Texture/SampleTex.jpg");
+	Math::Matrix mView = Math::Matrix::CreateTranslation(0, 0, 3);
+
+	Math::Matrix mProj =
+		DirectX::XMMatrixPerspectiveFovLH(DirectX::XMConvertToRadians(60.0f), 1280.0f / 720.0f, 0.01f, 1000.0f);
+
+	CBufferData::Camera cbCamera;
+	cbCamera.mView = mView;
+	cbCamera.mProj = mProj;
 
 	while (true)
 	{
@@ -56,12 +68,29 @@ void Application::Excute()
 
 		GraphicsDevice::Instance().GetCBVSRVUAVHeap()->SetHeap();
 
+		GraphicsDevice::Instance().GetCBufferAllocater()->ResetCurrentUseNumber();
+
 		shader.Begin(width, height);
 
-		sampleTex.Set(sampleTex.GetSRVNumber());
+		GraphicsDevice::Instance().GetCBufferAllocater()->BindAndAttachData(0, cbCamera);
 
-		shader.DrawMesh(mesh);
+		mWorld *= Math::Matrix::CreateRotationY(0.01f);
+
+		GraphicsDevice::Instance().GetCBufferAllocater()->BindAndAttachData(1, mWorld);
+
+		shader.DrawModel(modelData);
 
 		GraphicsDevice::Instance().ScreenFlip();
 	}
+}
+
+void Application::SetDirectoryAndLoadDll()
+{
+#ifdef _DEBUG
+	SetDllDirectoryA("Library/assimp/build/lib/Debug");
+	LoadLibraryExA("assimp-vc143-mtd.dll", NULL, NULL);
+#else
+	SetDllDirectoryA("Library/assimp/build/lib/Release");
+	LoadLibraryExA("assimp-vc143-mt.dll", NULL, NULL);
+#endif
 }

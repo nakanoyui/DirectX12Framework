@@ -1,114 +1,103 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="Asset">
+      <UniqueIdentifier>{13345c02-f868-4208-b06a-e6860590c644}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source">
-      <UniqueIdentifier>{511e871f-3282-460f-b3d8-bfcd9a6f8c7d}</UniqueIdentifier>
+      <UniqueIdentifier>{def6f598-a3da-4efb-86bc-5ec60d68f743}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source\Application">
-      <UniqueIdentifier>{d83e89b9-aff2-427f-8f22-aa28303f9158}</UniqueIdentifier>
+      <UniqueIdentifier>{b8dbe9b6-5b22-4cfd-a0fa-c658b3fd5c72}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source\Graphics">
-      <UniqueIdentifier>{1b674a81-990f-4dc6-a3c1-f3947aa4c618}</UniqueIdentifier>
+      <UniqueIdentifier>{ed7c8a03-9ce8-4d78-8964-bafaba9323c8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\System">
-      <UniqueIdentifier>{077e1b35-ae42-4d07-b031-455ef281cc09}</UniqueIdentifier>
+    <Filter Include="Source\Graphics\CBufferAllocater">
+      <UniqueIdentifier>{45b200c8-15ed-47dc-be01-9785fd601473}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\System\Window">
-      <UniqueIdentifier>{d27489f4-b333-439b-b6bb-32991aebc73e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\System\Utility">
-      <UniqueIdentifier>{46b95565-b191-4068-890f-9dafb47a63c1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Graphics\Mesh">
-      <UniqueIdentifier>{38d0c105-8f40-4585-85cc-57b1ad5a5dd1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Asset">
-      <UniqueIdentifier>{9b0376c3-4faa-4a5a-b4f7-9ececf5f708e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Asset\Shader">
-      <UniqueIdentifier>{20266062-d4d3-4f46-8091-4684cb8f5fc5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Graphics\Shader">
-      <UniqueIdentifier>{c5ed91d5-8440-40f5-b648-6557d3f33604}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Graphics\Shader\Pipeline">
-      <UniqueIdentifier>{9c08e605-f095-4586-8bb8-d9e958fe54c3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Graphics\Shader\RootSignature">
-      <UniqueIdentifier>{510584c3-6234-42e4-881d-3b355913fe91}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Graphics\Texture">
-      <UniqueIdentifier>{3d798134-c8b4-4999-bdca-d8ee91b1c775}</UniqueIdentifier>
+    <Filter Include="Source\Graphics\CBufferAllocater\CBufferData">
+      <UniqueIdentifier>{cb6582e7-3707-4fc4-9947-f6fe3b3180c9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source\Graphics\Heap">
-      <UniqueIdentifier>{167c478f-5f2b-4ea1-85b5-4ccfb90de1cd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Graphics\Heap\RTVHeap">
-      <UniqueIdentifier>{efe80d2a-c6b0-49ea-92cd-623e962157e9}</UniqueIdentifier>
+      <UniqueIdentifier>{33439b38-1f07-471b-a448-1e55d170bdc1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source\Graphics\Heap\CBVSRVUAVHeap">
-      <UniqueIdentifier>{d626bf43-9602-4a3c-857d-17cb76d2d963}</UniqueIdentifier>
+      <UniqueIdentifier>{e52d36b1-63e8-4d8c-9cb4-7c9c18cdffac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Graphics\Heap\RTVHeap">
+      <UniqueIdentifier>{2edcfba9-2863-4ace-afa4-1b9dc1110d23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Graphics\Mesh">
+      <UniqueIdentifier>{9934be76-eac7-4cb7-bf46-2eeb09402fb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Graphics\Mesh\MeshData">
+      <UniqueIdentifier>{a6160f1c-1784-4701-aceb-8db8085ce4d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Graphics\Model">
+      <UniqueIdentifier>{e1001f71-7073-4802-b222-8f41d451c621}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Graphics\Shader">
+      <UniqueIdentifier>{74a744a6-cccf-40c9-b2a0-e7dfd10d81d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Graphics\Shader\Pipeline">
+      <UniqueIdentifier>{80092896-fd74-4a08-bbfa-c1d63a7ee979}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Graphics\Shader\RootSignature">
+      <UniqueIdentifier>{9b7d10c5-581f-490b-a578-0e446847421f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Graphics\Texture">
+      <UniqueIdentifier>{efad0199-efe7-4a37-b7fd-fed05393878a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\System">
+      <UniqueIdentifier>{d6bec0a0-cbde-4f20-8536-40c253a266d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\System\Utility">
+      <UniqueIdentifier>{b642b0ca-def4-4e11-88d7-805d9535c957}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\System\Window">
+      <UniqueIdentifier>{4d7b9280-25c5-4668-9f4a-0bb081c0e9a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Asset\Shader">
+      <UniqueIdentifier>{ff4ab02c-37cf-49bf-a779-392893f53aff}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Application\Application.cpp">
-      <Filter>Source\Application</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\System\Window\Window.cpp">
-      <Filter>Source\System\Window</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Pch.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\System\Utility\Utility.cpp">
-      <Filter>Source\System\Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Graphics\GraphicsDevice.cpp">
-      <Filter>Source\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Graphics\Mesh\Mesh.cpp">
-      <Filter>Source\Graphics\Mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Graphics\Shader\Shader.cpp">
-      <Filter>Source\Graphics\Shader</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Graphics\Shader\Pipeline\Pipeline.cpp">
-      <Filter>Source\Graphics\Shader\Pipeline</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Graphics\Shader\RootSignature\RootSignature.cpp">
-      <Filter>Source\Graphics\Shader\RootSignature</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Graphics\Texture\Texture.cpp">
-      <Filter>Source\Graphics\Texture</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Graphics\Heap\RTVHeap\RTVHeap.cpp">
-      <Filter>Source\Graphics\Heap\RTVHeap</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Graphics\Heap\CBVSRVUAVHeap\CBVSRVUAVHeap.cpp">
-      <Filter>Source\Graphics\Heap\CBVSRVUAVHeap</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Source\Application\Application.h">
-      <Filter>Source\Application</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\System\Window\Window.h">
-      <Filter>Source\System\Window</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Pch.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Source\System\System.h">
-      <Filter>Source\System</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\System\Utility\Utility.h">
-      <Filter>Source\System\Utility</Filter>
+    <ClInclude Include="Source\Application\Application.h">
+      <Filter>Source\Application</Filter>
     </ClInclude>
     <ClInclude Include="Source\Graphics\GraphicsDevice.h">
       <Filter>Source\Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Graphics\CBufferAllocater\CBufferAllocater.h">
+      <Filter>Source\Graphics\CBufferAllocater</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\CBufferAllocater\CBufferData\CBufferData.h">
+      <Filter>Source\Graphics\CBufferAllocater\CBufferData</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Heap\Heap.h">
+      <Filter>Source\Graphics\Heap</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Heap\CBVSRVUAVHeap\CBVSRVUAVHeap.h">
+      <Filter>Source\Graphics\Heap\CBVSRVUAVHeap</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Heap\RTVHeap\RTVHeap.h">
+      <Filter>Source\Graphics\Heap\RTVHeap</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Graphics\Mesh\Mesh.h">
       <Filter>Source\Graphics\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Mesh\MeshData\MeshData.h">
+      <Filter>Source\Graphics\Mesh\MeshData</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Model\ModelLoader.h">
+      <Filter>Source\Graphics\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Model\Model.h">
+      <Filter>Source\Graphics\Model</Filter>
     </ClInclude>
     <ClInclude Include="Source\Graphics\Shader\Shader.h">
       <Filter>Source\Graphics\Shader</Filter>
@@ -122,28 +111,74 @@
     <ClInclude Include="Source\Graphics\Texture\Texture.h">
       <Filter>Source\Graphics\Texture</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Graphics\Heap\RTVHeap\RTVHeap.h">
-      <Filter>Source\Graphics\Heap\RTVHeap</Filter>
+    <ClInclude Include="Source\System\System.h">
+      <Filter>Source\System</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Graphics\Heap\CBVSRVUAVHeap\CBVSRVUAVHeap.h">
+    <ClInclude Include="Source\System\Utility\Utility.h">
+      <Filter>Source\System\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\System\Window\Window.h">
+      <Filter>Source\System\Window</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Pch.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Application\Application.cpp">
+      <Filter>Source\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\GraphicsDevice.cpp">
+      <Filter>Source\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\CBufferAllocater\CBufferAllocater.cpp">
+      <Filter>Source\Graphics\CBufferAllocater</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Heap\CBVSRVUAVHeap\CBVSRVUAVHeap.cpp">
       <Filter>Source\Graphics\Heap\CBVSRVUAVHeap</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Graphics\Heap\Heap.h">
-      <Filter>Source\Graphics\Heap</Filter>
-    </ClInclude>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Heap\RTVHeap\RTVHeap.cpp">
+      <Filter>Source\Graphics\Heap\RTVHeap</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Mesh\Mesh.cpp">
+      <Filter>Source\Graphics\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Model\ModelLoader.cpp">
+      <Filter>Source\Graphics\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Model\Model.cpp">
+      <Filter>Source\Graphics\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Shader\Shader.cpp">
+      <Filter>Source\Graphics\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Shader\Pipeline\Pipeline.cpp">
+      <Filter>Source\Graphics\Shader\Pipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Shader\RootSignature\RootSignature.cpp">
+      <Filter>Source\Graphics\Shader\RootSignature</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Texture\Texture.cpp">
+      <Filter>Source\Graphics\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\System\Utility\Utility.cpp">
+      <Filter>Source\System\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\System\Window\Window.cpp">
+      <Filter>Source\System\Window</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-    <None Include="Asset\Shader\inc_SimpleShader.hlsli">
-      <Filter>Asset\Shader</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="Asset\Shader\SimpleShader_VS.hlsl">
-      <Filter>Asset\Shader</Filter>
-    </FxCompile>
     <FxCompile Include="Asset\Shader\SimpleShader_PS.hlsl">
       <Filter>Asset\Shader</Filter>
     </FxCompile>
+    <FxCompile Include="Asset\Shader\SimpleShader_VS.hlsl">
+      <Filter>Asset\Shader</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Asset\Shader\inc_SimpleShader.hlsli">
+      <Filter>Asset\Shader</Filter>
+    </None>
   </ItemGroup>
 </Project>

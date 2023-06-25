@@ -35,13 +35,25 @@ public:
 	/// </summary>
 	/// <param name="w">横幅</param>
 	/// <param name="h">縦幅</param>
-	void Begin(int w,int h);
+	void Begin(int w, int h);
 
 	/// <summary>
 	/// メッシュの描画
 	/// </summary>
 	/// <param name="mesh">メッシュ</param>
 	void DrawMesh(const Mesh& mesh);
+
+	/// <summary>
+	/// モデルの描画
+	/// </summary>
+	/// <param name="modelData">モデルデータ</param>
+	void DrawModel(const ModelData& modelData);
+
+	/// <summary>
+	/// CBVカウント取得
+	/// </summary>
+	/// <returns>CBVカウント</returns>
+	UINT GetCBVCount() const { return m_cbvCount; }
 
 private:
 
@@ -50,6 +62,13 @@ private:
 	/// </summary>
 	/// <param name="filePath">ファイルパス</param>
 	void LoadShaderFile(const std::wstring& filePath);
+
+	//? 追加
+	/// <summary>
+	/// マテリアルをセット
+	/// </summary>
+	/// <param name="material">マテリアル情報</param>
+	void SetMaterial(const Material& material);
 
 	GraphicsDevice* m_pDevice = nullptr;
 
@@ -61,4 +80,6 @@ private:
 	ID3DBlob* m_pDSBlob = nullptr;		// ドメインシェーダー
 	ID3DBlob* m_pGSBlob = nullptr;		// ジオメトリシェーダー
 	ID3DBlob* m_pPSBlob = nullptr;		// ピクセルシェーダー
+
+	UINT m_cbvCount = 0;
 };

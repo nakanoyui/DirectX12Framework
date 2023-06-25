@@ -2,6 +2,7 @@
 
 class RTVHeap;
 class CBVSRVUAVHeap;
+class CBufferAllocater;
 
 class GraphicsDevice
 {
@@ -46,8 +47,14 @@ public:
 	/// <summary>
 	/// CBVSRVUAVヒープの取得
 	/// </summary>
-	/// <returns></returns>
+	/// <returns>CBVSRVUAVHeapのポインタ</returns>
 	CBVSRVUAVHeap* GetCBVSRVUAVHeap()const { return m_upCBVSRVUAVHeap.get(); }
+
+	/// <summary>
+	/// CBufferAllocaterの取得
+	/// </summary>
+	/// <returns>CBufferAllocaterのポインタ</returns>
+	CBufferAllocater* GetCBufferAllocater()const { return m_upCBufferAllocater.get(); }
 
 private:
 
@@ -123,12 +130,14 @@ private:
 	ComPtr<IDXGISwapChain4>					m_pSwapChain = nullptr;
 
 	std::array<ComPtr<ID3D12Resource>, 2>	m_pSwapchainBuffers;
+	std::unique_ptr<RTVHeap>				m_pRTVHeap = nullptr;
 
 	ComPtr<ID3D12Fence>					m_pFence = nullptr;
 	UINT64								m_fenceVal = 0;
 
 	std::unique_ptr<RTVHeap>			m_upRTVHeap = nullptr;
 	std::unique_ptr<CBVSRVUAVHeap>		m_upCBVSRVUAVHeap = nullptr;
+	std::unique_ptr<CBufferAllocater>	m_upCBufferAllocater = nullptr;
 
 	GraphicsDevice() {}
 	~GraphicsDevice() {}
