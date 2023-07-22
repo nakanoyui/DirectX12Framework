@@ -2,7 +2,7 @@
 
 bool Texture::Load(GraphicsDevice* pGraphicsDevice, const std::string& filePath)
 {
-	m_pDevice = pGraphicsDevice;
+	m_pGraphicsDevice = pGraphicsDevice;
 
 	wchar_t wFilePath[128];
 	MultiByteToWideChar(CP_ACP, 0, filePath.c_str(), -1, wFilePath, _countof(wFilePath));
@@ -34,7 +34,7 @@ bool Texture::Load(GraphicsDevice* pGraphicsDevice, const std::string& filePath)
 	resDesc.MipLevels = (UINT16)metadata.mipLevels;
 	resDesc.SampleDesc.Count = 1;
 
-	hr = m_pDevice->GetDevice()->CreateCommittedResource(&heapprop, D3D12_HEAP_FLAG_NONE, &resDesc,
+	hr = m_pGraphicsDevice->GetDevice()->CreateCommittedResource(&heapprop, D3D12_HEAP_FLAG_NONE, &resDesc,
 		D3D12_RESOURCE_STATE_GENERIC_READ, nullptr, IID_PPV_ARGS(&m_pBuffer));
 
 	if (FAILED(hr))
@@ -51,13 +51,13 @@ bool Texture::Load(GraphicsDevice* pGraphicsDevice, const std::string& filePath)
 		return false;
 	}
 
-	m_srvNumber = m_pDevice->GetCBVSRVUAVHeap()->CreateSRV(m_pBuffer.Get());
+	m_srvNumber = m_pGraphicsDevice->GetCBVSRVUAVHeap()->CreateSRV(m_pBuffer.Get());
 
 	return true;
 }
 
 void Texture::Set(int index)
 {
-	m_pDevice->GetCmdList()->SetGraphicsRootDescriptorTable
-	(index, m_pDevice->GetCBVSRVUAVHeap()->GetGPUHandle(m_srvNumber));
+	m_pGraphicsDevice->GetCmdList()->SetGraphicsRootDescriptorTable
+	(index, m_pGraphicsDevice->GetCBVSRVUAVHeap()->GetGPUHandle(m_srvNumber));
 }

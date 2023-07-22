@@ -69,7 +69,6 @@ void Pipeline::Create(std::vector<ID3DBlob*> pBlobs, const std::vector<DXGI_FORM
 	{
 		graphicsPipelineState.RasterizerState.DepthClipEnable = true;
 		graphicsPipelineState.DepthStencilState.DepthEnable = true;
-		graphicsPipelineState.DepthStencilState.StencilEnable = false;
 
 		if (bDepthMask)
 		{
@@ -86,7 +85,6 @@ void Pipeline::Create(std::vector<ID3DBlob*> pBlobs, const std::vector<DXGI_FORM
 	{
 		graphicsPipelineState.RasterizerState.DepthClipEnable = false;
 		graphicsPipelineState.DepthStencilState.DepthEnable = false;
-		graphicsPipelineState.DepthStencilState.StencilEnable = false;
 	}
 
 	graphicsPipelineState.BlendState.AlphaToCoverageEnable = false;

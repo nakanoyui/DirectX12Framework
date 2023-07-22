@@ -6,18 +6,12 @@ void Mesh::Create(GraphicsDevice* pGraphicsDevice, const std::vector<MeshVertex>
 	m_pDevice = pGraphicsDevice;
 	m_material = material;
 
-	// í∏ì_ÇÃç¿ïW
-	m_vertices[0] = { -0.75f,-0.75f ,0.0f };
-	m_vertices[1] = { 0.0f, 0.75f,0.0f };
-	m_vertices[2] = { 0.75f,-0.75f,0.0f };
-
 	if (static_cast<int>(vertices.size()) == 0)
 	{
 		assert(0 && "í∏ì_Ç™1Ç¬Ç‡Ç†ÇËÇ‹ÇπÇÒ");
 		return;
 	}
 
-	//? í«â¡
 	m_instanceCount = static_cast<UINT>(faces.size() * 3);
 
 	D3D12_HEAP_PROPERTIES heapProp = {};

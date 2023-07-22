@@ -6,14 +6,14 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
 	CoInitializeEx(nullptr, COINIT_MULTITHREADED);	// COM‰Šú‰»
 
-	Application::Instance().Excute();
+	Application::Instance().Execute();
 
 	CoUninitialize();	// COM‰ð•ú
 
 	return 0;
 }
 
-void Application::Excute()
+void Application::Execute()
 {
 	SetDirectoryAndLoadDll();
 
@@ -38,17 +38,15 @@ void Application::Excute()
 	Math::Matrix mWorld;
 
 	RenderingSetting renderingSetting = {};
-	renderingSetting.InputLayouts = 
-		{ InputLayout::POSITION,InputLayout::TEXCOORD,InputLayout::COLOR,InputLayout::NORMAL,InputLayout::TANGENT };
+	renderingSetting.InputLayouts =
+	{ InputLayout::POSITION,InputLayout::TEXCOORD,InputLayout::COLOR,InputLayout::NORMAL,InputLayout::TANGENT };
 	renderingSetting.Formats = { DXGI_FORMAT_R8G8B8A8_UNORM };
-	renderingSetting.IsDepth = false;
-	renderingSetting.IsDepthMask = false;
 
 	Shader shader;
-	shader.Create(&GraphicsDevice::Instance(), L"SimpleShader", 
+	shader.Create(&GraphicsDevice::Instance(), L"SimpleShader",
 		renderingSetting, { RangeType::CBV,RangeType::CBV, RangeType::SRV,RangeType::SRV,RangeType::SRV,RangeType::SRV });
 
-	Math::Matrix mView = Math::Matrix::CreateTranslation(0, 0, 3);
+	Math::Matrix mView = Math::Matrix::CreateTranslation(0, 0, 5);
 
 	Math::Matrix mProj =
 		DirectX::XMMatrixPerspectiveFovLH(DirectX::XMConvertToRadians(60.0f), 1280.0f / 720.0f, 0.01f, 1000.0f);
@@ -57,12 +55,17 @@ void Application::Excute()
 	cbCamera.mView = mView;
 	cbCamera.mProj = mProj;
 
+	Animator animator;
+	animator.SetAnimation(modelData.GetAnimation(0));
+
 	while (true)
 	{
 		if (!m_window.ProcessMessage())
 		{
 			break;
 		}
+
+		animator.AdvanceTime(modelData.WorkNodes(), 2.0f);
 
 		GraphicsDevice::Instance().Prepare();
 
@@ -74,9 +77,7 @@ void Application::Excute()
 
 		GraphicsDevice::Instance().GetCBufferAllocater()->BindAndAttachData(0, cbCamera);
 
-		mWorld *= Math::Matrix::CreateRotationY(0.01f);
-
-		GraphicsDevice::Instance().GetCBufferAllocater()->BindAndAttachData(1, mWorld);
+		GraphicsDevice::Instance().GetCBufferAllocater()->BindAndAttachData(1, modelData.GetNodes()[0].m_mLocal * mWorld);
 
 		shader.DrawModel(modelData);
 

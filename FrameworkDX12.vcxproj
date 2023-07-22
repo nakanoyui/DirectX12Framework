@@ -20,10 +20,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Application\Application.h" />
-    <ClInclude Include="Source\Graphics\CBufferAllocater\CBufferAllocater.h" />
-    <ClInclude Include="Source\Graphics\CBufferAllocater\CBufferData\CBufferData.h" />
+    <ClInclude Include="Source\Graphics\Buffer\Buffer.h" />
+    <ClInclude Include="Source\Graphics\Buffer\CBufferAllocater\CBufferAllocater.h" />
+    <ClInclude Include="Source\Graphics\Buffer\CBufferAllocater\CBufferData\CBufferData.h" />
+    <ClInclude Include="Source\Graphics\Buffer\DepthStencil\DepthStencil.h" />
+    <ClInclude Include="Source\Graphics\Buffer\Texture\Texture.h" />
     <ClInclude Include="Source\Graphics\GraphicsDevice.h" />
     <ClInclude Include="Source\Graphics\Heap\CBVSRVUAVHeap\CBVSRVUAVHeap.h" />
+    <ClInclude Include="Source\Graphics\Heap\DSVHeap\DSVHeap.h" />
     <ClInclude Include="Source\Graphics\Heap\Heap.h" />
     <ClInclude Include="Source\Graphics\Heap\RTVHeap\RTVHeap.h" />
     <ClInclude Include="Source\Graphics\Mesh\Mesh.h" />
@@ -33,17 +37,20 @@
     <ClInclude Include="Source\Graphics\Shader\Pipeline\Pipeline.h" />
     <ClInclude Include="Source\Graphics\Shader\RootSignature\RootSignature.h" />
     <ClInclude Include="Source\Graphics\Shader\Shader.h" />
-    <ClInclude Include="Source\Graphics\Texture\Texture.h" />
     <ClInclude Include="Source\Pch.h" />
+    <ClInclude Include="Source\System\Animation\Animation.h" />
     <ClInclude Include="Source\System\System.h" />
     <ClInclude Include="Source\System\Utility\Utility.h" />
     <ClInclude Include="Source\System\Window\Window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application\Application.cpp" />
-    <ClCompile Include="Source\Graphics\CBufferAllocater\CBufferAllocater.cpp" />
+    <ClCompile Include="Source\Graphics\Buffer\CBufferAllocater\CBufferAllocater.cpp" />
+    <ClCompile Include="Source\Graphics\Buffer\DepthStencil\DepthStencil.cpp" />
+    <ClCompile Include="Source\Graphics\Buffer\Texture\Texture.cpp" />
     <ClCompile Include="Source\Graphics\GraphicsDevice.cpp" />
     <ClCompile Include="Source\Graphics\Heap\CBVSRVUAVHeap\CBVSRVUAVHeap.cpp" />
+    <ClCompile Include="Source\Graphics\Heap\DSVHeap\DSVHeap.cpp" />
     <ClCompile Include="Source\Graphics\Heap\RTVHeap\RTVHeap.cpp" />
     <ClCompile Include="Source\Graphics\Mesh\Mesh.cpp" />
     <ClCompile Include="Source\Graphics\Model\Model.cpp" />
@@ -51,13 +58,13 @@
     <ClCompile Include="Source\Graphics\Shader\Pipeline\Pipeline.cpp" />
     <ClCompile Include="Source\Graphics\Shader\RootSignature\RootSignature.cpp" />
     <ClCompile Include="Source\Graphics\Shader\Shader.cpp" />
-    <ClCompile Include="Source\Graphics\Texture\Texture.cpp" />
     <ClCompile Include="Source\Pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Source\System\Animation\Animation.cpp" />
     <ClCompile Include="Source\System\Utility\Utility.cpp" />
     <ClCompile Include="Source\System\Window\Window.cpp" />
   </ItemGroup>
@@ -67,12 +74,20 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">4.0_level_9_3</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">4.0_level_9_3</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4.0_level_9_3</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4.0_level_9_3</ShaderModel>
     </FxCompile>
     <FxCompile Include="Asset\Shader\SimpleShader_VS.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">4.0_level_9_3</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">4.0_level_9_3</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4.0_level_9_3</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4.0_level_9_3</ShaderModel>
     </FxCompile>
   </ItemGroup>
   <ItemGroup>

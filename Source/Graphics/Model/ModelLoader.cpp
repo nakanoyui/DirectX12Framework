@@ -1,17 +1,18 @@
 #include "ModelLoader.h"
 
-bool ModelLoader::Load(std::string filepath, std::vector<ModelData::Node>& nodes)
+bool ModelLoader::Load(std::string filepath, ModelData& model)
 {
 	Assimp::Importer importer;
 
 	int flag = 0;
-	flag |= aiProcess_CalcTangentSpace;
+	//flag |= aiProcess_CalcTangentSpace;
 	flag |= aiProcess_Triangulate;
-	flag |= aiProcess_GenSmoothNormals;
-	flag |= aiProcess_PreTransformVertices;
-	flag |= aiProcess_RemoveRedundantMaterials;
-	flag |= aiProcess_GenUVCoords;
-	flag |= aiProcess_OptimizeMeshes;
+	flag |= aiProcess_ConvertToLeftHanded;
+	//flag |= aiProcess_GenSmoothNormals;
+	//flag |= aiProcess_PreTransformVertices;
+	//flag |= aiProcess_RemoveRedundantMaterials;
+	//flag |= aiProcess_GenUVCoords;
+	//flag |= aiProcess_OptimizeMeshes;
 
 	const aiScene* pScene = importer.ReadFile(filepath, flag);
 
@@ -21,6 +22,7 @@ bool ModelLoader::Load(std::string filepath, std::vector<ModelData::Node>& nodes
 		return false;
 	}
 
+	auto& nodes = model.WorkNodes();
 	nodes.resize(pScene->mNumMeshes);
 
 	std::string dirPath = GetDirFromPath(filepath);
@@ -30,6 +32,64 @@ bool ModelLoader::Load(std::string filepath, std::vector<ModelData::Node>& nodes
 		aiMesh* pMesh = pScene->mMeshes[i];
 		aiMaterial* pMaterial = pScene->mMaterials[i];
 		nodes[i].spMesh = Parse(pScene, pMesh, pMaterial, dirPath);
+	}
+
+	auto& spAnimationDatas = model.WorkAnimation();
+
+	for (UINT i = 0; i < pScene->mNumAnimations; ++i)
+	{
+		aiAnimation* pAnimation = pScene->mAnimations[i];
+
+		std::shared_ptr<AnimationData> spAnimaData = std::make_shared<AnimationData>();
+		spAnimaData->m_name = pAnimation->mName.C_Str();
+		spAnimaData->m_maxTime = pAnimation->mDuration;
+
+		spAnimaData->m_channels.resize(pAnimation->mNumChannels);
+
+		for (int j = 0; j < pAnimation->mNumChannels; ++j)
+		{
+			auto& srcChannel = spAnimaData->m_channels[j];
+			auto dstChannel = pAnimation->mChannels[j];
+
+			for (int k = 0; k < dstChannel->mNumPositionKeys; ++k)
+			{
+				AnimKeyVector3 translation;
+				translation.m_time = dstChannel->mPositionKeys[k].mTime;
+
+				translation.m_vec.x = dstChannel->mPositionKeys[k].mValue.x;
+				translation.m_vec.y = dstChannel->mPositionKeys[k].mValue.y;
+				translation.m_vec.z = dstChannel->mPositionKeys[k].mValue.z;
+
+				srcChannel.m_translations.emplace_back(translation);
+			}
+
+			for (int k = 0; k < dstChannel->mNumRotationKeys; ++k)
+			{
+				AnimKeyQuaternion rotation;
+				rotation.m_time = dstChannel->mRotationKeys[k].mTime;
+
+				rotation.m_quat.x = dstChannel->mRotationKeys[k].mValue.x;
+				rotation.m_quat.y = dstChannel->mRotationKeys[k].mValue.y;
+				rotation.m_quat.z = dstChannel->mRotationKeys[k].mValue.z;
+				rotation.m_quat.w = dstChannel->mRotationKeys[k].mValue.w;
+
+				srcChannel.m_rotations.emplace_back(rotation);
+			}
+
+			for (int k = 0; k < dstChannel->mNumScalingKeys; ++k)
+			{
+				AnimKeyVector3 scale;
+				scale.m_time = dstChannel->mScalingKeys[k].mTime;
+
+				scale.m_vec.x = dstChannel->mScalingKeys[k].mValue.x;
+				scale.m_vec.y = dstChannel->mScalingKeys[k].mValue.y;
+				scale.m_vec.z = dstChannel->mScalingKeys[k].mValue.z;
+
+				srcChannel.m_scales.emplace_back(scale);
+			}
+		}
+
+		spAnimationDatas.emplace_back(spAnimaData);
 	}
 
 	return true;
@@ -53,6 +113,10 @@ std::shared_ptr<Mesh> ModelLoader::Parse(const aiScene* pScene, const aiMesh* pM
 		{
 			vertices[i].UV.x = static_cast<float>(pMesh->mTextureCoords[0][i].x);
 			vertices[i].UV.y = static_cast<float>(pMesh->mTextureCoords[0][i].y);
+
+			// UV‚ð”½“]‚³‚¹‚é
+			//vertices[i].UV.x = 1 - vertices[i].UV.x;
+			//vertices[i].UV.y = 1 - vertices[i].UV.y;
 		}
 
 		vertices[i].Normal.x = pMesh->mNormals[i].x;
@@ -72,6 +136,7 @@ std::shared_ptr<Mesh> ModelLoader::Parse(const aiScene* pScene, const aiMesh* pM
 			color.x = pMesh->mColors[0][i].r;
 			color.y = pMesh->mColors[0][i].g;
 			color.z = pMesh->mColors[0][i].b;
+			color.w = pMesh->mColors[0][i].a;
 
 			vertices[i].Color = color.RGBA().v;
 		}
@@ -87,7 +152,7 @@ std::shared_ptr<Mesh> ModelLoader::Parse(const aiScene* pScene, const aiMesh* pM
 	}
 
 	std::shared_ptr<Mesh>spMesh = std::make_shared<Mesh>();
-	spMesh->Create(&GraphicsDevice::Instance(), vertices, faces, ParseMaterial(pMaterial,dirPath));
+	spMesh->Create(&GraphicsDevice::Instance(), vertices, faces, ParseMaterial(pMaterial, dirPath));
 
 	return spMesh;
 }

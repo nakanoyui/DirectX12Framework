@@ -3,6 +3,8 @@
 class RTVHeap;
 class CBVSRVUAVHeap;
 class CBufferAllocater;
+class DSVHeap;
+class DepthStencil;
 
 class GraphicsDevice
 {
@@ -55,6 +57,12 @@ public:
 	/// </summary>
 	/// <returns>CBufferAllocaterのポインタ</returns>
 	CBufferAllocater* GetCBufferAllocater()const { return m_upCBufferAllocater.get(); }
+
+	/// <summary>
+	/// DSVHeapの取得
+	/// </summary>
+	/// <returns>DSVHeapのポインタ</returns>
+	DSVHeap* GetDSVHeap()const { return m_upDSVHeap.get(); }
 
 private:
 
@@ -138,6 +146,8 @@ private:
 	std::unique_ptr<RTVHeap>			m_upRTVHeap = nullptr;
 	std::unique_ptr<CBVSRVUAVHeap>		m_upCBVSRVUAVHeap = nullptr;
 	std::unique_ptr<CBufferAllocater>	m_upCBufferAllocater = nullptr;
+	std::unique_ptr<DSVHeap>			m_upDSVHeap = nullptr;
+	std::unique_ptr<DepthStencil>		m_upDepthStencil = nullptr;
 
 	GraphicsDevice() {}
 	~GraphicsDevice() {}

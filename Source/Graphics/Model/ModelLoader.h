@@ -22,7 +22,7 @@ public:
 	/// <param name="filepath">ファイルパス</param>
 	/// <param name="nodes">ノード情報</param>
 	/// <returns>成功したらtrue</returns>
-	bool Load(std::string filepath, std::vector<ModelData::Node>& nodes);
+	bool Load(std::string filepath, ModelData& model);
 
 private:
 

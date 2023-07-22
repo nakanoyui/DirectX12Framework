@@ -10,7 +10,7 @@ public:
 	/// <summary>
 	/// アプリケーション実行
 	/// </summary>
-	void Excute();
+	void Execute();
 
 private:
 

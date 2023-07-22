@@ -38,7 +38,7 @@ bool GraphicsDevice::Init(HWND hWnd, int w, int h)
 	}
 
 	m_upCBVSRVUAVHeap = std::make_unique<CBVSRVUAVHeap>();
-	if (!m_upCBVSRVUAVHeap->Create(this, HeapType::CBVSRVUAV,Math::Vector3(100,100,100)))
+	if (!m_upCBVSRVUAVHeap->Create(this, HeapType::CBVSRVUAV, Math::Vector3(100, 100, 100)))
 	{
 		assert(0 && "CBVSRVUAVヒープの作成失敗");
 		return false;
@@ -46,6 +46,20 @@ bool GraphicsDevice::Init(HWND hWnd, int w, int h)
 
 	m_upCBufferAllocater = std::make_unique<CBufferAllocater>();
 	m_upCBufferAllocater->Create(this, m_upCBVSRVUAVHeap.get());
+
+	m_upDSVHeap = std::make_unique<DSVHeap>();
+	if (!m_upDSVHeap->Create(this, HeapType::DSV, 100))
+	{
+		assert(0 && "DSVヒープの作成失敗");
+		return false;
+	}
+
+	m_upDepthStencil = std::make_unique<DepthStencil>();
+	if (!m_upDepthStencil->Create(this, Math::Vector2(1280, 720)))
+	{
+		assert(0 && "DepthStencilの作成失敗");
+		return false;
+	}
 
 	if (!CreateSwapchainRTV())
 	{
@@ -65,14 +79,18 @@ bool GraphicsDevice::Init(HWND hWnd, int w, int h)
 void GraphicsDevice::Prepare()
 {
 	auto bbIdx = m_pSwapChain->GetCurrentBackBufferIndex();
-	SetResourceBarrier(m_pSwapchainBuffers[bbIdx].Get(), 
+	SetResourceBarrier(m_pSwapchainBuffers[bbIdx].Get(),
 		D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET);
 
 	auto rtvH = m_pRTVHeap->GetCPUHandle(bbIdx);
-	m_pCmdList->OMSetRenderTargets(1, &rtvH, false, nullptr);
+	auto dsvH = m_upDSVHeap->GetCPUHandle(m_upDepthStencil->GetDSVNumber());
+	m_pCmdList->OMSetRenderTargets(1, &rtvH, false, &dsvH);
 
 	float clearColor[] = { 1.0f,0.0f,1.0f,1.0f }; // 紫色
 	m_pCmdList->ClearRenderTargetView(rtvH, clearColor, 0, nullptr);
+
+	// デプスバッファのクリア
+	m_upDepthStencil->ClearBuffer();
 }
 
 void GraphicsDevice::ScreenFlip()

@@ -1,6 +1,6 @@
 #pragma once
 
-class CBufferAllocater
+class CBufferAllocater :public Buffer
 {
 public:
 
@@ -25,11 +25,9 @@ public:
 	void BindAndAttachData(int descIndex, const T& data);
 
 private:
-	GraphicsDevice* m_pGraphicsDevice = nullptr;
 	CBVSRVUAVHeap* m_pHeap = nullptr;
-	ComPtr<ID3D12Resource> m_pBuffer = nullptr;
 	struct { char buf[256]; }*m_pMappedBuffer = nullptr;
-	int m_currentUseNumber = 0;					
+	int m_currentUseNumber = 0;
 };
 
 template<typename T>
@@ -62,13 +60,13 @@ inline void CBufferAllocater::BindAndAttachData(int descIndex, const T& data)
 
 	D3D12_CPU_DESCRIPTOR_HANDLE cpuHandle = m_pHeap->GetHeap()->GetCPUDescriptorHandleForHeapStart();
 	cpuHandle.ptr += (UINT64)m_pGraphicsDevice->GetDevice()->GetDescriptorHandleIncrementSize
-	(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV) * m_currentUseNumber;
+	(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV) *m_currentUseNumber;
 
 	m_pGraphicsDevice->GetDevice()->CreateConstantBufferView(&cbDesc, cpuHandle);
 
 	D3D12_GPU_DESCRIPTOR_HANDLE gpuHandle = m_pHeap->GetHeap()->GetGPUDescriptorHandleForHeapStart();
 	gpuHandle.ptr += (UINT64)m_pGraphicsDevice->GetDevice()->GetDescriptorHandleIncrementSize
-	(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV) * m_currentUseNumber;
+	(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV) *m_currentUseNumber;
 
 	m_pGraphicsDevice->GetCmdList()->SetGraphicsRootDescriptorTable(descIndex, gpuHandle);
 

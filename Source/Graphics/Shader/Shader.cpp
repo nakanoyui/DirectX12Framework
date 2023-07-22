@@ -48,6 +48,8 @@ void Shader::Begin(int w, int h)
 
 	viewport.Width = static_cast<float>(w);
 	viewport.Height = static_cast<float>(h);
+	viewport.MinDepth = 0.0f;
+	viewport.MaxDepth = 1.0f;
 
 	rect.right = w;
 	rect.bottom = h;

@@ -13,7 +13,7 @@ class Heap
 {
 public:
 	Heap() {}
-	~Heap() {}
+	virtual ~Heap() {}
 
 	/// <summary>
 	/// ÉqÅ[ÉvçÏê¨
@@ -28,7 +28,7 @@ public:
 
 		heapDesc.Type = static_cast<D3D12_DESCRIPTOR_HEAP_TYPE>(heapType);
 		heapDesc.NodeMask = 0;
-		heapDesc.NumDescriptors = ComputUseCount(useCount);
+		heapDesc.NumDescriptors = ComputeUseCount(useCount);
 		heapDesc.Flags = heapType == HeapType::CBVSRVUAV ?
 			D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE : D3D12_DESCRIPTOR_HEAP_FLAG_NONE;
 
@@ -40,7 +40,7 @@ public:
 		}
 
 		m_useCount = useCount;
-		m_incrementSize = pDevice->GetDevice()->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV);
+		m_incrementSize = pDevice->GetDevice()->GetDescriptorHandleIncrementSize(static_cast<D3D12_DESCRIPTOR_HEAP_TYPE>(heapType));
 		m_pDevice = pDevice;
 
 		return true;
@@ -78,12 +78,12 @@ protected:
 	int m_nextRegistNumber = 0;
 
 private:
-	UINT ComputUseCount(UINT useCount)
+	UINT ComputeUseCount(UINT useCount)
 	{
 		return useCount;
 	}
 
-	UINT ComputUseCount(Math::Vector3 useCount)
+	UINT ComputeUseCount(Math::Vector3 useCount)
 	{
 		return (UINT)(useCount.x + useCount.y + useCount.z);
 	}

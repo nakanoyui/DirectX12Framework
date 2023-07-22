@@ -19,7 +19,7 @@ LRESULT WindowProcedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 bool Window::Create(int clientWidth, int clientHeight, const std::wstring& titleName, const std::wstring& windowClassName)
 {
 	// インスタンスハンドル取得
-	HINSTANCE hInst= GetModuleHandle(0);
+	HINSTANCE hInst = GetModuleHandle(0);
 
 	//=====================================
 	// メインウィンドウ作成

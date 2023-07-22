@@ -13,12 +13,6 @@
     <Filter Include="Source\Graphics">
       <UniqueIdentifier>{ed7c8a03-9ce8-4d78-8964-bafaba9323c8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Graphics\CBufferAllocater">
-      <UniqueIdentifier>{45b200c8-15ed-47dc-be01-9785fd601473}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Graphics\CBufferAllocater\CBufferData">
-      <UniqueIdentifier>{cb6582e7-3707-4fc4-9947-f6fe3b3180c9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\Graphics\Heap">
       <UniqueIdentifier>{33439b38-1f07-471b-a448-1e55d170bdc1}</UniqueIdentifier>
     </Filter>
@@ -46,9 +40,6 @@
     <Filter Include="Source\Graphics\Shader\RootSignature">
       <UniqueIdentifier>{9b7d10c5-581f-490b-a578-0e446847421f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Graphics\Texture">
-      <UniqueIdentifier>{efad0199-efe7-4a37-b7fd-fed05393878a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\System">
       <UniqueIdentifier>{d6bec0a0-cbde-4f20-8536-40c253a266d5}</UniqueIdentifier>
     </Filter>
@@ -61,6 +52,27 @@
     <Filter Include="Asset\Shader">
       <UniqueIdentifier>{ff4ab02c-37cf-49bf-a779-392893f53aff}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Graphics\Heap\DSVHeap">
+      <UniqueIdentifier>{969bb537-5aba-4dac-9ac2-3ba2e1856705}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Graphics\Buffer">
+      <UniqueIdentifier>{b5fefc73-d1f4-43ec-901e-5800b019f8c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Graphics\Buffer\DepthStencil">
+      <UniqueIdentifier>{0f3ad4c5-0b2a-4cc3-ab12-7ec8a2e2efa9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Graphics\Buffer\CBufferAllocater">
+      <UniqueIdentifier>{66b2cb57-b089-4703-b0e8-fa837d325d1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Graphics\Buffer\CBufferAllocater\CBufferData">
+      <UniqueIdentifier>{22817b74-c245-4e0d-a21d-fb9290438e51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Graphics\Buffer\Texture">
+      <UniqueIdentifier>{bbbd09ba-43d2-4046-8965-9d43e8e11ef6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\System\Animation">
+      <UniqueIdentifier>{459f4cdb-2859-4a31-b3fe-6b48f1be6237}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Pch.h">
@@ -71,12 +83,6 @@
     </ClInclude>
     <ClInclude Include="Source\Graphics\GraphicsDevice.h">
       <Filter>Source\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Graphics\CBufferAllocater\CBufferAllocater.h">
-      <Filter>Source\Graphics\CBufferAllocater</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Graphics\CBufferAllocater\CBufferData\CBufferData.h">
-      <Filter>Source\Graphics\CBufferAllocater\CBufferData</Filter>
     </ClInclude>
     <ClInclude Include="Source\Graphics\Heap\Heap.h">
       <Filter>Source\Graphics\Heap</Filter>
@@ -108,9 +114,6 @@
     <ClInclude Include="Source\Graphics\Shader\RootSignature\RootSignature.h">
       <Filter>Source\Graphics\Shader\RootSignature</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Graphics\Texture\Texture.h">
-      <Filter>Source\Graphics\Texture</Filter>
-    </ClInclude>
     <ClInclude Include="Source\System\System.h">
       <Filter>Source\System</Filter>
     </ClInclude>
@@ -119,6 +122,27 @@
     </ClInclude>
     <ClInclude Include="Source\System\Window\Window.h">
       <Filter>Source\System\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Heap\DSVHeap\DSVHeap.h">
+      <Filter>Source\Graphics\Heap\DSVHeap</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Buffer\Buffer.h">
+      <Filter>Source\Graphics\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Buffer\DepthStencil\DepthStencil.h">
+      <Filter>Source\Graphics\Buffer\DepthStencil</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Buffer\CBufferAllocater\CBufferAllocater.h">
+      <Filter>Source\Graphics\Buffer\CBufferAllocater</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Buffer\CBufferAllocater\CBufferData\CBufferData.h">
+      <Filter>Source\Graphics\Buffer\CBufferAllocater\CBufferData</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Buffer\Texture\Texture.h">
+      <Filter>Source\Graphics\Buffer\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\System\Animation\Animation.h">
+      <Filter>Source\System\Animation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -130,9 +154,6 @@
     </ClCompile>
     <ClCompile Include="Source\Graphics\GraphicsDevice.cpp">
       <Filter>Source\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Graphics\CBufferAllocater\CBufferAllocater.cpp">
-      <Filter>Source\Graphics\CBufferAllocater</Filter>
     </ClCompile>
     <ClCompile Include="Source\Graphics\Heap\CBVSRVUAVHeap\CBVSRVUAVHeap.cpp">
       <Filter>Source\Graphics\Heap\CBVSRVUAVHeap</Filter>
@@ -158,14 +179,26 @@
     <ClCompile Include="Source\Graphics\Shader\RootSignature\RootSignature.cpp">
       <Filter>Source\Graphics\Shader\RootSignature</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Graphics\Texture\Texture.cpp">
-      <Filter>Source\Graphics\Texture</Filter>
-    </ClCompile>
     <ClCompile Include="Source\System\Utility\Utility.cpp">
       <Filter>Source\System\Utility</Filter>
     </ClCompile>
     <ClCompile Include="Source\System\Window\Window.cpp">
       <Filter>Source\System\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Heap\DSVHeap\DSVHeap.cpp">
+      <Filter>Source\Graphics\Heap\DSVHeap</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Buffer\DepthStencil\DepthStencil.cpp">
+      <Filter>Source\Graphics\Buffer\DepthStencil</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Buffer\CBufferAllocater\CBufferAllocater.cpp">
+      <Filter>Source\Graphics\Buffer\CBufferAllocater</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Buffer\Texture\Texture.cpp">
+      <Filter>Source\Graphics\Buffer\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\System\Animation\Animation.cpp">
+      <Filter>Source\System\Animation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -63,7 +63,6 @@ private:
 	/// <param name="filePath">ファイルパス</param>
 	void LoadShaderFile(const std::wstring& filePath);
 
-	//? 追加
 	/// <summary>
 	/// マテリアルをセット
 	/// </summary>

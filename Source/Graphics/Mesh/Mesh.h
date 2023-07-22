@@ -65,8 +65,6 @@ private:
 	D3D12_VERTEX_BUFFER_VIEW	m_vbView;
 	D3D12_INDEX_BUFFER_VIEW		m_ibView;
 
-	std::array<Math::Vector3, 3> m_vertices;
-
 	UINT m_instanceCount;
 	Material m_material;
 };

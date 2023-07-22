@@ -1,6 +1,6 @@
 #pragma once
 
-class Texture
+class Texture :public Buffer
 {
 public:
 
@@ -25,8 +25,5 @@ public:
 	int GetSRVNumber() { return m_srvNumber; }
 
 private:
-	GraphicsDevice* m_pDevice = nullptr;
-
-	ComPtr<ID3D12Resource> m_pBuffer = nullptr;
 	int m_srvNumber = 0;
 };
