@@ -1,9 +1,6 @@
 #include "Animation.h"
 
 // 二分探索で、指定時間から次の配列要素のKeyIndexを求める関数
-// list		… キー配列
-// time		… 時間
-// 戻り値	… 次の配列要素のIndex
 template<class T>
 int BinarySearchNextAnimKey(const std::vector<T>& list, float time)
 {
@@ -20,7 +17,7 @@ int BinarySearchNextAnimKey(const std::vector<T>& list, float time)
 	return low;
 }
 
-void Animator::AdvanceTime(std::vector<ModelData::Node>& rNodes, float speed)
+void Animator::ProgressTime(std::vector<ModelData::Node>& rNodes, float speed)
 {
 	if (!m_spAnimation) { return; }
 

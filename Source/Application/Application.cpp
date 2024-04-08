@@ -65,7 +65,7 @@ void Application::Execute()
 			break;
 		}
 
-		animator.AdvanceTime(modelData.WorkNodes(), 2.0f);
+		animator.ProgressTime(modelData.WorkNodes(), 2.0f);
 
 		GraphicsDevice::Instance().Prepare();
 

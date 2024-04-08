@@ -74,7 +74,7 @@ public:
 	}
 
 	// アニメーションの更新
-	void AdvanceTime(std::vector<ModelData::Node>& rNodes, float speed = 1.0f);
+	void ProgressTime(std::vector<ModelData::Node>& rNodes, float speed = 1.0f);
 
 	// アニメーションのリセット
 	void ResetAdvanceTime() { m_time = 0; }

@@ -55,7 +55,7 @@ bool GraphicsDevice::Init(HWND hWnd, int w, int h)
 	}
 
 	m_upDepthStencil = std::make_unique<DepthStencil>();
-	if (!m_upDepthStencil->Create(this, Math::Vector2(1280, 720)))
+	if (!m_upDepthStencil->Create(this, Math::Vector2(w, h)))
 	{
 		assert(0 && "DepthStencil‚Ìì¬¸”s");
 		return false;
